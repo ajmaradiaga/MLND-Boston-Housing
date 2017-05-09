@@ -11900,23 +11900,23 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="k">print</span> <span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -11945,7 +11945,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -12015,9 +12015,9 @@ MEDV     0.697209 -0.760670 -0.519034  1.000000
 <p><strong>Answer: </strong></p>
 <p>By seeing the correlation between the Data points, we can determine how a feature will affect MEDV.</p>
 <ul>
-<li>RM: An increase in the value of RM will <em>increase</em> the value of MEDV.</li>
-<li>LSTAT: An increase in the value of LSTAT will <em>decrease</em> the value of MEDV as they have a negative correlation.</li>
-<li>PTRATIO: An increase in the value of PTRATIO will <em>decrease</em> the value of MEDV as they have a negative correlation.</li>
+<li>RM: Normally, houses with more rooms are bigger and bigger familiar will be able to live there. An increase in the value of RM will <em>increase</em> the value of MEDV. </li>
+<li>LSTAT: As this reflects how poor is a neighborhood, it affects negatively the MEDV. Poorer neighborhoods are less atractive hence why prices are lower. </li>
+<li>PTRATIO: Less teachers per student <em>decrease</em> the value of MEDV as a teacher needs to attend more student. The quality of teaching is affected by the more student per teacher, as a teacher will not be able to pay as much attention to every student.</li>
 </ul>
 
 </div>
@@ -13335,8 +13335,7 @@ JvOOlpmZmZmZWZN5R8vMzMzMzKzJ/g9gUakJKNZ7aQAAAABJRU5ErkJggg==
 <p><strong>Answer: </strong></p>
 <ol>
 <li>Graph with max_depth=3.</li>
-<li>The more training data the better it generalises the model. We can see that we are not overfitting as the training score is not perfect. </li>
-<li>Training curse starts well and it improves with more data but it plateaus at around 300 data points. </li>
+<li>At the beginning we can see that the testing score is not as good. When we add more data, we can see that how training improves, the training and testing curves get closer. This means that the model generalises better. 3. We notice that at around 300 data points the training score plateaus and our model isn't learning anymore.  </li>
 <li>No. More than 300 seems to be an overkill.</li>
 </ol>
 
@@ -13929,8 +13928,8 @@ Z4wxJqRY4jPGGBNS/j/eVERH4/b8WQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ol>
-<li>Provides train/test indices to split data in train/test sets. Split dataset into k consecutive folds. We can also shuffle data using KFold.</li>
-<li>A benefit is that each fold is used once as a validation while the k - 1 remaining folds form the training set. It will prevent the model from overfitting.</li>
+<li>Provides train/test indices to split data in train/test sets. Split dataset into k consecutive folds. We can also shuffle data using KFold. The way k fold works is that before training the model it will divide our data in k pieces. Then for training it will train the model various times with different datasets. Lets say that k = 3, the first iteration trains with pieces 1 and 2, validates with 3, the second iteration trains with pieces 2 and 3, validates with 1 and the third iteration (last), trains with pieces 3 and 1, validates with 2.</li>
+<li>A benefit is that each fold is used once as a validation while the k - 1 remaining folds form the training set and each fold is used for validation exactly once. Also KFold can be useful when we don't have much data to train our model, by doing this iterations the model will be able to train with "more data". </li>
 </ol>
 
 </div>
@@ -14270,7 +14269,7 @@ Range in prices: $0.00
 <p><strong>Answer: </strong></p>
 <ul>
 <li>Not that relevant anymore as the conditions of the different neighbourhoods could have changed. Also, the cost of a house is much higher now than what it was in 1978.</li>
-<li>No, there are other features that could be included in the dataset that can impact the price of a house. Does it has a backyard, swimming pool, garage.</li>
+<li>No, there are other features that could be included in the dataset that can impact the price of a house, e.g. Does it has a backyard, swimming pool, garage. Was it designed by an architect? Quality of the materials used to build the house.</li>
 <li>Yes, it consistently predicted the same price $408,800.00.</li>
 <li>No, the prices in urban cities are usually much higher than rural.</li>
 </ul>
